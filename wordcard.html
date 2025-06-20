@@ -32,138 +32,380 @@
       border-radius: 8px; border: 1px solid #4a90e2; background: #4a90e2; color: #fff; cursor: pointer;
     }
     .card-mask {
-      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.3); z-index: 10;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      z-index: 1002;
+      background: none;
+      width: auto; height: auto;
+      display: block;
+      pointer-events: none;
     }
     .card {
-      background: #fff; border-radius: 12px; padding: 32px; min-width: 320px; min-height: 220px;
-      box-shadow: 0 4px 24px #0003; position: relative;
+      background: linear-gradient(135deg, #fafdff 60%, #e3f0ff 100%);
+      border-radius: 22px;
+      padding: 0 0 30px 0;
+      min-width: 340px; min-height: 240px;
+      box-shadow: 0 8px 32px #1976d233, 0 1.5px 8px #0001;
+      position: relative;
+      border: 1.5px solid #e3eaf5;
       animation: fadein 0.2s;
+      pointer-events: auto;
+      overflow: hidden;
+    }
+    .card-header-word {
+      width: 100%;
+      background: linear-gradient(90deg, #e3f0ff 60%, #fafdff 100%);
+      border-radius: 22px 22px 0 0;
+      padding: 28px 38px 10px 38px;
+      font-size: 2.3em;
+      color: #1976d2;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align: left;
+      box-sizing: border-box;
+      border-bottom: 1.5px solid #e3eaf5;
+    }
+    .card-content-area {
+      padding: 0 38px;
     }
     @keyframes fadein { from { opacity: 0; transform: scale(0.95);} to { opacity: 1; transform: scale(1);} }
     .close-btn {
-      position: absolute; right: 16px; top: 16px; background: none; border: none; font-size: 22px; cursor: pointer;
+      position: absolute; right: 18px; top: 18px; background: none; border: none; font-size: 26px; cursor: pointer;
+      color: #aaa; transition: color 0.2s, background 0.2s; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
     }
-    .card-nav { margin-top: 24px; display: flex; justify-content: space-between; }
+    .close-btn:hover {
+      color: #fff; background: #1976d2;
+    }
+    .card-nav { margin-top: 28px; display: flex; justify-content: space-between; }
     .card-nav button {
-      padding: 6px 18px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;
-      background: #fff; cursor: pointer;
+      padding: 8px 22px; font-size: 17px; border-radius: 8px; border: 1.5px solid #1976d2;
+      background: #fafdff; cursor: pointer; color: #1976d2; font-weight: 500;
+      transition: background 0.2s, color 0.2s, border 0.2s;
     }
-    .card-nav button:disabled { background: #eee; cursor: not-allowed; }
+    .card-nav button:disabled { background: #f0f4fa; color: #aaa; border: 1.5px solid #e3eaf5; cursor: not-allowed; }
+    .card-nav button:not(:disabled):hover { background: #1976d2; color: #fff; }
     .speak-btn {
-      background: #f5f5f5; border: 1px solid #ccc; border-radius: 50%; width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center; cursor: pointer; margin-bottom: 16px;
+      background: #e3f0ff; border: 1.5px solid #1976d2; border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; margin-bottom: 18px;
+      transition: background 0.2s, border 0.2s;
+      box-shadow: 0 2px 8px #1976d222;
+    }
+    .speak-btn:hover {
+      background: #1976d2; border: 1.5px solid #1976d2;
+    }
+    .speak-btn svg { stroke: #1976d2; transition: stroke 0.2s; }
+    .speak-btn:hover svg { stroke: #fff; }
+    .card h2 {
+      font-size: 2.1em; color: #1976d2; font-weight: bold; margin-bottom: 10px; letter-spacing: 1px;
+    }
+    .card h3 {
+      font-size: 1.2em; color: #1976d2; margin: 18px 0 8px 0; font-weight: 600;
+    }
+    .card .card-section {
+      background: #f0f4fa; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; font-size: 1.08em;
+      box-shadow: 0 1px 4px #1976d211;
+    }
+    /* 设置面板美化 */
+    #settingPanel {
+      background: linear-gradient(135deg, #fafdff 60%, #e3f0ff 100%);
+      border-radius: 14px;
+      box-shadow: 0 8px 32px #1976d233, 0 1.5px 8px #0001;
+      border: 1.5px solid #e3eaf5;
+      min-width: 260px;
+    }
+    #settingPanel label {
+      font-size: 17px; color: #1976d2; font-weight: 500;
+    }
+    #settingPanel select {
+      font-size: 16px; border-radius: 6px; border: 1.5px solid #1976d2; padding: 4px 12px; background: #fafdff; color: #1976d2;
+      margin-left: 8px; margin-right: 8px;
+      transition: border 0.2s;
+    }
+    #settingPanel select:focus { border: 1.5px solid #1565c0; outline: none; }
+    #settingPanel button {
+      font-size: 16px; border-radius: 8px; border: 1.5px solid #1976d2; background: #fafdff; color: #1976d2; padding: 6px 18px; margin-top: 18px; cursor: pointer; font-weight: 500;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+    }
+    #settingPanel button:hover { background: #1976d2; color: #fff; }
+    .word-speak {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 2px;
+      transition: background-color 0.2s;
+    }
+    .word-speak:hover {
+      background-color: #e0e0e0;
+      border-radius: 3px;
+    }
+    .word-group {
+      position: absolute;
+      z-index: 4;
+      user-select: none;
+      /* 让内部绝对定位参考 */
+      pointer-events: auto;
+    }
+    .word-on-img {
+      position: relative;
+      display: inline-block;
+      font-size: 26px;
+      font-weight: bold;
+      color: #1a237e;
+      font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
+      text-shadow: 1px 2px 8px #fff, 0 1px 2px #0001;
+      letter-spacing: 1px;
+      padding: 2px 10px 2px 2px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 2px 8px #0001;
+    }
+    .word-btn {
+      position: absolute;
+      top: -14px;
+      right: -18px;
+      margin: 0;
+      z-index: 2;
+      box-shadow: 0 2px 8px #1976d211;
+      background: #fff;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    .word-btn:hover {
+      background: #e3f0ff;
+      box-shadow: 0 4px 16px #1976d222;
     }
   </style>
 </head>
 <body>
+  <button id="editModeBtn" style="position:fixed;right:30px;top:30px;z-index:1000;padding:8px 18px;font-size:16px;">编辑模式</button>
+  <button id="settingBtn" style="position:fixed;right:150px;top:30px;z-index:1000;padding:8px 18px;font-size:16px;">设置</button>
+  <div id="settingPanel" style="display:none;position:fixed;right:30px;top:80px;z-index:2000;background:#fff;border:1px solid #1976d2;border-radius:8px;box-shadow:0 2px 12px #0002;padding:24px 32px;">
+    <div style="font-size:18px;margin-bottom:16px;">朗读次数设置</div>
+    <label style="font-size:16px;">每个单词朗读
+      <select id="readCountSelect" style="font-size:16px;margin:0 8px;">
+        <option value="1">1次</option>
+        <option value="2">2次</option>
+        <option value="3">3次</option>
+        <option value="4">4次</option>
+        <option value="5">5次</option>
+      </select>
+      </label>
+    <button id="closeSettingBtn" style="margin-left:24px;font-size:16px;">关闭</button>
+  </div>
   <div class="container">
     <img id="main-img" src="word-card.png" alt="word card" style="width:100%;display:block;">
     <!-- 单词按钮会通过JS插入 -->
     <button id="startBtn" class="start-btn">开始学习</button>
   </div>
-  <!-- 卡片弹窗 -->
-  <div id="cardMask" class="card-mask" style="display:none;">
-    <div class="card" onclick="event.stopPropagation()">
-      <button class="close-btn" id="closeCardBtn" title="关闭">×</button>
-      <div id="cardContent"></div>
-      <div class="card-nav">
-        <button id="prevPageBtn">上一页</button>
-        <button id="nextPageBtn">下一页</button>
-      </div>
-    </div>
-  </div>
+  <!-- 固定右上角的卡片弹窗 -->
+  <div id="cardContainer"></div>
   <script>
     // 单词数据
     const words = [
       {
         text: "Crown",
-        x: 0.68, y: 0.13,
+        x: 0.408, y: 0.025, // 单词文字
+        btnX: 0.592, btnY: 0.056, // 按钮
         definition: "n. 王冠，皇冠；v. 为……加冕",
         example: "The king wore a golden crown.",
         memory: "联想：crown像'皇冠'，国王头上的装饰。"
       },
       {
         text: "Sceptre",
-        x: 0.54, y: 0.06,
+        x: 0.392, y: 0.212,
+        btnX: 0.198, btnY: 0.240,
         definition: "n. 权杖，象征王权的杖",
         example: "The queen held a sceptre in her hand.",
         memory: "联想：sceptre的p像权杖的形状。"
       },
       {
         text: "Empress",
-        x: 0.88, y: 0.45,
+        x: 0.728, y: 0.312,
+        btnX: 0.926, btnY: 0.272,
         definition: "n. 女皇，皇后",
         example: "The empress ruled the country wisely.",
         memory: "联想：empress=em(母亲)+press(压)，母亲般的统治者。"
       },
       {
-        text: "Empresss",
-        x: 0.13, y: 0.28,
-        definition: "n. 女皇（拼写有误，实际应为Empress）",
-        example: "The empresss was kind to her people.",
-        memory: "联想：同Empress，注意拼写。"
+        text: "Emperor",
+        x: 0.004, y: 0.294,
+        btnX: 0.212, btnY: 0.235,
+        definition: "n. 皇帝",
+        example: "The emperor ruled the country for many years.",
+        memory: "联想：emperor = empire（帝国）+ or（人），帝国之人即皇帝。"
       }
     ];
 
-    // 动态插入单词按钮
-    const container = document.querySelector('.container');
     let wordBtns = [];
+    let wordSpans = [];
+    let editMode = false;
+    const editBtn = document.getElementById('editModeBtn');
+    editBtn.onclick = () => {
+      editMode = !editMode;
+      editBtn.textContent = editMode ? '退出编辑' : '编辑模式';
+      // 切换可拖拽状态
+      [...wordBtns, ...wordSpans].forEach(el => {
+        el.style.pointerEvents = editMode ? 'auto' : '';
+        el.style.border = editMode ? '2px dashed #1976d2' : '';
+        el.style.background = editMode ? '#e3f2fd' : '';
+        el.draggable = editMode;
+      });
+      clearActiveBtns();
+    };
+
+    // 拖拽辅助函数
+    function makeDraggable(el, i, type) {
+      let dragging = false;
+      let startX, startY, origLeft, origTop;
+      el.addEventListener('mousedown', function(e) {
+        if (!editMode) return;
+        dragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        origLeft = el.offsetLeft;
+        origTop = el.offsetTop;
+        document.body.style.userSelect = 'none';
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (!editMode || !dragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        el.style.left = ((origLeft + dx) / container.offsetWidth * 100) + '%';
+        el.style.top = ((origTop + dy) / container.offsetHeight * 100) + '%';
+      });
+      document.addEventListener('mouseup', function(e) {
+        if (!editMode || !dragging) return;
+        dragging = false;
+        document.body.style.userSelect = '';
+        const x = el.offsetLeft / container.offsetWidth;
+        const y = el.offsetTop / container.offsetHeight;
+        console.log(`${type} ${words[i].text} 新坐标: x: ${x.toFixed(3)}, y: ${y.toFixed(3)}`);
+      });
+    }
+
+    // 动态插入单词按钮（圆形按钮，点击弹出卡片）
+    const container = document.querySelector('.container');
     words.forEach((w, i) => {
+      // 创建包裹单词和按钮的 group
+      const group = document.createElement('div');
+      group.className = 'word-group';
+      group.style.left = (w.x * 100) + '%';
+      group.style.top = (w.y * 100) + '%';
+      // 单词
+      const span = document.createElement('span');
+      span.className = 'word-on-img';
+      span.textContent = w.text;
+      span.title = `点击朗读 ${w.text}`;
+      span.onclick = (e) => {
+        if (!editMode) {
+          clearActiveBtns();
+          speak(w.text);
+          showCard(i, 0, group);
+        }
+        e.stopPropagation();
+      };
+      // 按钮
       const btn = document.createElement('button');
       btn.className = 'word-btn';
-      btn.style.left = (w.x * 100) + '%';
-      btn.style.top = (w.y * 100) + '%';
       btn.title = `查看 ${w.text} 卡片`;
       btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/></svg>`;
-      btn.onclick = () => showCard(i, 0);
-      container.appendChild(btn);
+      btn.onclick = (e) => {
+        if (!editMode) {
+          clearActiveBtns();
+          showCard(i, 0, group);
+        }
+      };
+      // 拖拽整个 group
+      makeDraggable(group, i, '单词组');
+      group.appendChild(span);
+      group.appendChild(btn);
+      container.appendChild(group);
       wordBtns.push(btn);
+      wordSpans.push(span);
     });
 
-    // 卡片弹窗逻辑
-    const cardMask = document.getElementById('cardMask');
-    const cardContent = document.getElementById('cardContent');
-    const prevPageBtn = document.getElementById('prevPageBtn');
-    const nextPageBtn = document.getElementById('nextPageBtn');
-    const closeCardBtn = document.getElementById('closeCardBtn');
-    let cardWordIdx = 0, cardPage = 0;
-
-    function showCard(idx, page) {
-      cardWordIdx = idx;
-      cardPage = page;
-      renderCard();
-      cardMask.style.display = '';
+    // 只显示一个居中卡片
+    const cardContainer = document.getElementById('cardContainer');
+    function showCard(idx, page, anchorEl) {
+      cardContainer.innerHTML = '';
+      const w = words[idx];
+      let html = `<div class='card-header-word'>${w.text}</div><button class='close-btn' title='关闭'>×</button><div class='card-content-area'><div id='cardContent-main'></div><div class='card-nav'><button class='prev-btn'>上一页</button><button class='next-btn'>下一页</button></div></div>`;
+      const mask = document.createElement('div');
+      mask.className = 'card-mask';
+      mask.style.position = 'fixed';
+      mask.style.left = '50%';
+      mask.style.top = '50%';
+      mask.style.transform = 'translate(-50%, -50%)';
+      mask.innerHTML = `<div class='card'>${html}</div>`;
+      cardContainer.appendChild(mask);
+      renderCardTo(idx, page);
+      // 关闭按钮
+      mask.querySelector('.close-btn').onclick = () => {
+        cardContainer.innerHTML = '';
+      };
+      // 上下页
+      const prevBtn = mask.querySelector('.prev-btn');
+      const nextBtn = mask.querySelector('.next-btn');
+      prevBtn.onclick = () => {
+        if (page > 0) {
+          showCard(idx, page - 1, anchorEl);
+        }
+      };
+      nextBtn.onclick = () => {
+        if (page < 2) {
+          showCard(idx, page + 1, anchorEl);
+        }
+      };
     }
-    function hideCard() {
-      cardMask.style.display = 'none';
+    function renderCardTo(idx, page) {
+      const w = words[idx];
+      let html = '';
+      if (page === 0) {
+        html = `<div class="card-section">${w.definition}</div>
+           <button class="speak-btn" onclick="speak('${w.text}');event.stopPropagation();"
+             title="播放发音">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19 5c1.5 2 1.5 8 0 10"/><path d="M15 9.5c.5 1 .5 4 0 5"/></svg>
+           </button>`;
+      } else if (page === 1) {
+        html = `<h3>例句</h3><div class="card-section">${wrapWords(w.example)}</div>`;
+      } else {
+        html = `<h3>联想记忆</h3><div class="card-section">${wrapWords(w.memory)}</div>`;
+      }
+      document.getElementById('cardContent-main').innerHTML = html;
     }
-    closeCardBtn.onclick = hideCard;
-    cardMask.onclick = hideCard;
 
-    prevPageBtn.onclick = () => {
-      if (cardPage > 0) {
-        cardPage--;
-        renderCard();
-      }
+    // 朗读次数设置
+    function getReadCount() {
+      return parseInt(localStorage.getItem('readCount') || '1', 10);
+    }
+    function setReadCount(val) {
+      localStorage.setItem('readCount', val);
+    }
+    // 设置面板逻辑
+    const settingBtn = document.getElementById('settingBtn');
+    const settingPanel = document.getElementById('settingPanel');
+    const readCountSelect = document.getElementById('readCountSelect');
+    const closeSettingBtn = document.getElementById('closeSettingBtn');
+    settingBtn.onclick = () => {
+      clearActiveBtns();
+      settingPanel.style.display = '';
+      readCountSelect.value = getReadCount();
     };
-    nextPageBtn.onclick = () => {
-      if (cardPage < 2) {
-        cardPage++;
-        renderCard();
-      }
+    closeSettingBtn.onclick = () => {
+      clearActiveBtns();
+      settingPanel.style.display = 'none';
+    };
+    readCountSelect.onchange = (e) => {
+      setReadCount(e.target.value);
     };
 
-    function speak(word, repeat = 1) {
+    function speak(word) {
+      window.speechSynthesis.cancel();
       let count = 0;
       function play() {
-        if (count < repeat) {
+        if (count < getReadCount()) {
           const utter = new window.SpeechSynthesisUtterance(word);
           utter.lang = "en-US";
           utter.onend = () => {
             count++;
-            play();
+            setTimeout(play, 100);
           };
           window.speechSynthesis.speak(utter);
         }
@@ -171,24 +413,14 @@
       play();
     }
 
-    function renderCard() {
-      const w = words[cardWordIdx];
-      let html = '';
-      if (cardPage === 0) {
-        html = `<h2 style="margin-bottom:8px;">${w.text}</h2>
-          <div style="margin-bottom:16px;">${w.definition}</div>
-          <button class="speak-btn" onclick="speak('${w.text}',3);event.stopPropagation();"
-            title="播放发音">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19 5c1.5 2 1.5 8 0 10"/><path d="M15 9.5c.5 1 .5 4 0 5"/></svg>
-          </button>`;
-      } else if (cardPage === 1) {
-        html = `<h3>例句</h3><div style="margin-top:16px;font-size:18px;">${w.example}</div>`;
-      } else {
-        html = `<h3>联想记忆</h3><div style="margin-top:16px;font-size:18px;">${w.memory}</div>`;
-      }
-      cardContent.innerHTML = html;
-      prevPageBtn.disabled = cardPage === 0;
-      nextPageBtn.disabled = cardPage === 2;
+    function wrapWords(text) {
+      // 通过拆分和重新组合来为每个单词添加点击事件
+      // 使用正则表达式来更好地处理单词和非单词字符
+      return text.replace(/([a-zA-Z']+)/g, (word) => {
+        // 移除可能附加在单词末尾的标点符号
+        const cleanedWord = word.replace(/[.,!?]$/, '');
+        return `<span class="word-speak" onclick="speak('${cleanedWord.replace(/'/g, "\\'")}');event.stopPropagation();">${word}</span>`;
+      });
     }
 
     // "开始学习"功能
@@ -210,12 +442,27 @@
         return;
       }
       wordBtns.forEach((btn, i) => btn.classList.toggle('active', i === idx));
-      const utter = new window.SpeechSynthesisUtterance(words[idx].text);
-      utter.lang = "en-US";
-      utter.onend = () => {
-        playNext(idx + 1);
-      };
-      window.speechSynthesis.speak(utter);
+      // 朗读次数按设置
+      let count = 0;
+      function playWord() {
+        if (count < getReadCount()) {
+          const utter = new window.SpeechSynthesisUtterance(words[idx].text);
+          utter.lang = "en-US";
+          utter.onend = () => {
+            count++;
+            setTimeout(playWord, 100);
+          };
+          window.speechSynthesis.speak(utter);
+        } else {
+          playNext(idx + 1);
+        }
+      }
+      playWord();
+    }
+
+    // 清除所有按钮高亮
+    function clearActiveBtns() {
+      wordBtns.forEach(btn => btn.classList.remove('active'));
     }
   </script>
 </body>
